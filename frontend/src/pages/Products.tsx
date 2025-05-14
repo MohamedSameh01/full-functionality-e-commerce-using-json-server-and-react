@@ -33,8 +33,8 @@ const Products = () => {
 
   return (
     <>
-      <Heading>
-        <span className="text-capitalize">
+      <Heading >
+        <span className="text-capitalize ">
           {params.prefix} Products
         </span>
       </Heading>

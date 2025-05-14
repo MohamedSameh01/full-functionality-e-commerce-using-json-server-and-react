@@ -52,6 +52,8 @@ const Product = memo(
           }
         });
     };
+
+    console.log("render product");
     return (
       <div className={product}>
         <div className={wishlistBtn} onClick={likeToggleHandler}>
