@@ -1,0 +1,14 @@
+{
+  "name": "e-commerce-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server db.json --port 5932"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "json-server": "^0.17.4"
+  }
+}
