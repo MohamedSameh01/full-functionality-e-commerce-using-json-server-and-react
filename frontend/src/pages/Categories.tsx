@@ -1,24 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-import { actGetCategories } from "@store/categories/categoriesSlice";
+
 import { Container } from "react-bootstrap";
 import { GridList,Heading } from "@components/common";
 import { Category } from "@components/ecommerce";
 import { Loading } from "@components/feedback";
+import useCategories from "@hooks/useCategories";
 
 const Categories = () => {
-  const dispatch = useAppDispatch();
-  const { error, loading, records } = useAppSelector(
-    (state) => state.categories
-  );
-  useEffect(() => {
-    if (records.length === 0) {
-      dispatch(actGetCategories());
-    }
-  }, [dispatch]);
 
-  
+
+  const { error, loading, records } = useCategories();
   return (
     <Container>
       <Heading title="Categories"/>

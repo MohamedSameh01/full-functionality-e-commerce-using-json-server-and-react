@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import actGetCategories from "./act/actGetCategories";
 import { TLoading } from "@customTypes/shared";
 import { TCategory } from "@customTypes/category";
+import { isString } from "@customTypes/guard";
 
 interface ICategoriesState {
   records: TCategory[];
@@ -18,9 +19,9 @@ const categoriesSlice = createSlice({
   name: "categories",
   initialState,
   reducers: {
-    categoriesCleanUp:(state)=>{
+    categoriesCleanUp: (state) => {
       state.records = [];
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(actGetCategories.pending, (state) => {
@@ -34,7 +35,11 @@ const categoriesSlice = createSlice({
     builder.addCase(actGetCategories.rejected, (state, action) => {
       state.loading = "failed";
       // this if state ment to guard that the data should be string
-      if (action.payload && typeof action.payload === "string") {
+      // if (action.payload && typeof action.payload === "string") {
+      //   state.error = action.payload;
+      // }
+      // or this soluton
+      if (isString(action.payload)) {
         state.error = action.payload;
       }
       // also u can write it without the if condition

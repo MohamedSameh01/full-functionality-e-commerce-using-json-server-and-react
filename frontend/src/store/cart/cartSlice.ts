@@ -6,6 +6,7 @@ import {
 } from "./selectors";
 import { TProduct } from "@customTypes/product";
 import { TLoading } from "@customTypes/shared";
+import { isString } from "@customTypes/guard";
 
 interface ICartState {
   items: { [key: string]: number };
@@ -57,7 +58,7 @@ const cartSlice = createSlice({
     });
     builder.addCase(actGetProductsByItems.rejected, (state, action) => {
       state.loading = "failed";
-      if (action.payload && typeof action.payload === "string") {
+      if (isString(action.payload)) {
         state.error = action.payload;
       }
     });

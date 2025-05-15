@@ -3,6 +3,7 @@ import actLikeToggle from "./act/actLikeToggle";
 import actGetWishlist from "./act/actGetWishlist";
 import { TLoading } from "@customTypes/shared";
 import { TProduct } from "@customTypes/product";
+import { isString } from "@customTypes/guard";
 
 interface IWishlistState {
     itemsId:number[]
@@ -42,7 +43,9 @@ const wishlistSlice = createSlice({
       }
     });
     builder.addCase(actLikeToggle.rejected, (state, action) => {
-      state.error = action.payload as string;
+         if (isString(action.payload)) {
+          state.error = action.payload;
+         }
     });
     // actGetwishList
     builder.addCase(actGetWishlist.pending, (state) => {
@@ -54,7 +57,9 @@ const wishlistSlice = createSlice({
       state.productsFullInfo = action.payload;
     });
     builder.addCase(actGetWishlist.rejected, (state, action) => {
-      state.error = action.payload as string;
+      if (isString(action.payload)) {
+        state.error = action.payload;
+      }
     });
   },
 });
