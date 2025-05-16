@@ -11,8 +11,8 @@ const Categories = () => {
   const { error, loading, records } = useCategories();
   return (
     <Container>
-      <Heading title="Categories"/>
-      <Loading status={loading} error={error}>
+      <Heading title="Categories" />
+      <Loading status={loading} error={error} type="category">
         <GridList
           records={records}
           renderItem={(record) => <Category {...record} />}

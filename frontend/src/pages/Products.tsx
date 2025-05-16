@@ -13,7 +13,7 @@ const Products = () => {
       <Heading>
         <span className="text-capitalize ">{productPrefix} Products</span>
       </Heading>
-      <Loading status={loading} error={error}>
+      <Loading status={loading} error={error} type="products">
         <GridList<TProduct>
           records={productsFullInfo}
           renderItem={(record) => <Product {...record} />}

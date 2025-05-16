@@ -72,7 +72,7 @@ const Product = memo(
         <h3>{price.toFixed(2)} EGP</h3>
         <p className={maximumNotice}>
           {quantityReachedToMax
-            ? "You reach to the limit"
+            ? <span style={{color:"red"}}>You reach to the limit</span>
             : `You can add ${currentRemainingQuantity} item(s)`}
         </p>
         <Button

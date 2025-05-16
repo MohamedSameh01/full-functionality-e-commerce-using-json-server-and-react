@@ -1,19 +1,31 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { TLoading } from "@customTypes/shared"
+import CategorySkeleton from "../skeletons/CategorySkeleton/CategorySkeleton";
+import CartSkeleton from "../skeletons/CartSkeleton/CartSkeleton";
+import ProductSkeleton from "../skeletons/ProductSkeleton/ProductSkeleton";
+import LottieHandler from "../lottieHandler/LottieHandler";
+type LoadingProps = {
+  status: TLoading;
+  error: null | string;
+  children: React.ReactNode;
+  type?: keyof typeof skeletonsTypes;
+};
 
-type LoadingProps={
-  status:TLoading,
-  error:null|string,
-  children:React.ReactNode
+const skeletonsTypes={
+  cart:CartSkeleton,
+  category:CategorySkeleton,
+  products:ProductSkeleton,
 }
 
+const Loading = ({ status, error, children ,type="category"}: LoadingProps) => {
 
-const Loading = ({ status, error, children }: LoadingProps) => {
+  const Component = skeletonsTypes[type];
+
   if (status === "pending") {
-    return <p>Loading please wait</p>;
+    return <Component/>;
   }
   if (status === "failed") {
-    return <p>error {error}</p>;
+    return <LottieHandler type="error" message={error as string} />;
   }
   return <>{children}</>;
 };
